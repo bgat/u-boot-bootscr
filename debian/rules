@@ -1,15 +1,13 @@
 #!/usr/bin/make -f
 export DH_VERBOSE=1
 
-ARCH=$(DEB_HOST_GNU_CPU)
-CROSS_COMPILE=$(DEB_HOST_GNU_TYPE)-
-
+ARCH=arm
 DESTDIR=debian
 dest=$(DESTDIR)/$(basename $@)/boot
 
-find_bootscrs = $(wildcard u-boot-bootscr*txt)
+find_bootscrs = $(wildcard bootscr-*txt)
 
-.PHONY(bootscrs)
+.PHONY: bootscrs
 bootscrs: $(addsuffix .scr, $(basename $(find_bootscrs)))
 
 %.scr : %.txt
@@ -21,7 +19,7 @@ bootscrs: $(addsuffix .scr, $(basename $(find_bootscrs)))
 	dh $@
 
 override_dh_auto_clean:
-	rm *.scr
+	rm -f *.scr
 
 override_dh_auto_build: bootscrs
 #override_dh_auto_install:

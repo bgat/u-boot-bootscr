@@ -5,13 +5,13 @@ Maintainer: Bill Gatliff <bgat@billgatliff.com>
 Build-Depends: u-boot-tools, debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
 
-Package: u-boot-bootscr-omap3-ttyO2-mmc0
+Package: bootscr-omap3
 Architecture: all
 Depends: ${misc:Depends}
 Description: u-boot boot.scr console=ttyO2 root=mmcblk0p2
  U-boot bootscript
 
-Package: u-boot-bootscr-generic-ttyS0-mmc0
+Package: bootscr-generic
 Architecture: all
 Depends: ${misc:Depends}
 Description: u-boot boot.scr console=ttyS0 root=mmcblk0p2

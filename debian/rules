@@ -5,15 +5,17 @@ ARCH=arm
 DESTDIR=debian
 dest=$(DESTDIR)/$(basename $@)/boot
 
-find_bootscrs = $(wildcard bootscr-*txt)
-
-.PHONY: bootscrs
-bootscrs: $(addsuffix .scr, $(basename $(find_bootscrs)))
+txt=$(wildcard bootscr-*.txt)
+scr=$(addsuffix .scr, $(basename $(txt)))
+paths=$(foreach pkg, $(basename $(txt)), $(DESTDIR)/$(pkg)/boot) 
+path_to_scr=$(addsuffix .scr, $(shell echo $@ | sed s!$(DESTDIR)/!! | sed s!/boot/boot.scr!!))
 
 %.scr : %.txt
 	mkimage -A $(ARCH) -O linux -T script -C none -n "bootscript" -d $< $@
-	mkdir -p $(dest)
-	mv $@ $(dest)/boot.scr
+
+$(foreach path, $(paths), $(path)/boot.scr) :
+	mkdir -p $(dir $@)
+	cp $(path_to_scr) $@
 
 %:
 	dh $@
@@ -21,8 +23,9 @@ bootscrs: $(addsuffix .scr, $(basename $(find_bootscrs)))
 override_dh_auto_clean:
 	rm -f *.scr
 
-override_dh_auto_build: bootscrs
-#override_dh_auto_install:
+override_dh_auto_build: $(scr)
+
+override_dh_auto_install: $(foreach path, $(paths), $(path)/boot.scr)
 
 #override_dh_auto_configure:
 #override_dh_auto_test:

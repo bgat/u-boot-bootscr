@@ -1,6 +1,6 @@
-setenv bootargs console=ttyO2,115200n8 muprate=auto vram=12M omapfb.mode=none root=/dev/mmcblk0p2 rw rootwait
+setenv bootargs console=ttyS0,115200n8 root=/dev/mmcblk0p2 rw rootwait
 
-fatload mmc -1 $loadaddr zimage
+fatload mmc 0 $loadaddr zimage
 fatload mmc 0 $fdtaddr dtb
 bootz $loadaddr - $fdtaddr
 

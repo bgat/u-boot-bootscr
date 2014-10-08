@@ -1,0 +1,5 @@
+setenv bootargs console=ttyO0,115200n8 root=/dev/mmcblk0p2 rw rootwait
+fatload mmc 0 $loadaddr zimage
+fatload mmc 0 $fdtaddr dtb
+bootz $loadaddr - $fdtaddr
+

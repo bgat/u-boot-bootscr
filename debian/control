@@ -16,3 +16,9 @@ Architecture: all
 Depends: ${misc:Depends}
 Description: u-boot boot.scr console=ttyS0 root=mmcblk0p2
  U-boot bootscript
+
+Package: bootscr-am335x
+Architecture: all
+Depends: ${misc:Depends}
+Description: bootargs=console=ttyO0,115200n8 root=/dev/mmcblk0p2 rw
+ U-boot bootscript

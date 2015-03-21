@@ -22,3 +22,9 @@ Architecture: all
 Depends: ${misc:Depends}
 Description: bootargs=console=ttyO0,115200n8 root=/dev/mmcblk0p2 rw
  U-boot bootscript
+
+Package: bootscr-am335x-emmc
+Architecture: all
+Depends: ${misc:Depends}
+Description: bootargs=console=ttyO0,115200n8 root=/dev/mmcblk1p2 rw
+ U-boot bootscript

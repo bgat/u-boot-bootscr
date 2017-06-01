@@ -1,11 +1,11 @@
-bootargs=console=ttyO2,115200n8 mpurate=auto omapfb.mode=none vram=12M rootwait
+setenv bootargs console=ttyO2,115200n8 mpurate=auto omapfb.mode=none vram=12M rootwait
 
-bootmmc=mmc dev ${mmcdev} && mmc rescan && run loadmmc && bootz ${loadaddr} - ${fdtaddr}
-loadmmc=ext2load mmc ${mmcdev}:2 ${loadaddr} boot/zImage && ext2load mmc ${mmcdev}:2 ${fdtaddr} boot/dtb && setenv bootargs $bootargs root=/dev/mmcblk0p2 rw
+setenv bootmmc "mmc dev ${mmcdev} && mmc rescan && run loadmmc && bootz ${loadaddr} - ${fdtaddr}"
+setenv loadmmc "ext2load mmc ${mmcdev}:2 ${loadaddr} boot/zImage && ext2load mmc ${mmcdev}:2 ${fdtaddr} boot/dtb && setenv bootargs $bootargs root=/dev/mmcblk0p2 rw"
 
-ubipart=rootfs
-bootubi=ubi part ${ubipart} && ubifsmount ubi0 && run loadubi && setenv bootargs $bootargs root=ubi0:${ubipart} rw rootfstype=ubifs ubi.mtd=4 && bootz ${loadaddr} - ${fdtaddr}
-loadubi=ubifsload ${loadaddr} boot/zImage && ubifsload ${fdtaddr} boot/dtb
+setenv ubipart rootfs
+setenv bootubi "ubi part ${ubipart} && ubifsmount ubi0 && run loadubi && setenv bootargs $bootargs root=ubi0:${ubipart} rw rootfstype=ubifs ubi.mtd=4 && bootz ${loadaddr} - ${fdtaddr}"
+setenv loadubi "ubifsload ${loadaddr} boot/zImage && ubifsload ${fdtaddr} boot/dtb"
 
 run bootmmc
 run bootubi

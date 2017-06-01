@@ -8,7 +8,7 @@ Standards-Version: 3.9.3
 Package: bootscr-omap3
 Architecture: all
 Depends: ${misc:Depends}
-Description: u-boot boot.scr console=ttyO2 root=mmcblk0p2
+Description: u-boot boot.scr console=ttyO2 root=mmc|ubi
  U-boot bootscript
 
 Package: bootscr-generic

@@ -1,9 +1,9 @@
 Source: u-boot-bootscr
 Section: bootloader
-Priority: extra
+Priority: optional
 Maintainer: Bill Gatliff <bgat@billgatliff.com>
-Build-Depends: u-boot-tools, debhelper (>= 8.0.0)
-Standards-Version: 3.9.3
+Build-Depends: u-boot-tools, debhelper
+Standards-Version: 4.3.0
 
 Package: bootscr-omap3
 Architecture: all
